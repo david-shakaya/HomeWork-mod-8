@@ -1,4 +1,4 @@
-const d = [
+const galleryListImg = [
   {
     preview:
       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
@@ -64,13 +64,26 @@ const d = [
   },
 ];
 
-// Только начинаю и присматриваюсь еще не понял как делать(
+const gallery = document.querySelector('.js-gallery'); // Находит UL в которую кидаем всю разметку
 
-const gallery = document.querySelector('.js-gallery');
-gallery.classList.add('gallery')
 
-{/* <img src="" alt=""> */}
-    
-d.forEach(element => {
-    gallery.insertAdjacentHTML('afterbegin', `<img src="${element.preview}" alt=""/> ` )
-});
+//  Добавляет в ДОМ-документ все елементы масива
+const  getMarkup =(arr) => arr.reduce((acc, img) => 
+  acc + `<li class="gallery__item">
+  <a
+    class="gallery__link"
+    href="${img.original}"
+  >
+    <img
+      class="gallery__image"
+      src="${img.preview}"
+      data-source="${img.original}"
+      alt="${img.description}"
+    />
+  </a>
+</li>`
+  
+, '')
+gallery.innerHTML = getMarkup(galleryListImg)
+
+
