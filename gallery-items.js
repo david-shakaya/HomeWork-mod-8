@@ -64,7 +64,15 @@ const galleryListImg = [
   },
 ];
 
-const gallery = document.querySelector('.js-gallery'); // Находит UL в которую кидаем всю разметку
+// >>>> - 1)
+
+const galleryRef = document.querySelector('.js-gallery'); // Находит UL в котором разметка галереи
+const lightboxRef = document.querySelector('.js-lightbox'); // Див с модалкой
+const lightboxImage = document.querySelector('.lightbox__image');
+const btnClose = document.querySelector('button[data-action="close-lightbox"]');
+const lightboxContent = document.querySelector('.lightbox__content');
+
+
 
 
 //  Добавляет в ДОМ-документ все елементы масива
@@ -84,6 +92,36 @@ const  getMarkup =(arr) => arr.reduce((acc, img) =>
 </li>`
   
 , '')
-gallery.innerHTML = getMarkup(galleryListImg)
+galleryRef.innerHTML = getMarkup(galleryListImg)
 
 
+// >>>> - 2)
+
+galleryRef.addEventListener('click', openModl)
+
+function openModl(event) {
+  event.preventDefault();
+  
+
+  if (event.target.nodeName !== 'IMG') {
+    return null
+  }
+   
+  lightboxRef.classList.add('is-open')
+  const galleryImage = document.querySelectorAll('.gallery__image');
+
+  changesAtributeSrc(event)
+  // showsСloseButton()
+lightboxContent.append( btnClose)
+}
+
+
+function changesAtributeSrc(url) {    // меняет src  атрибут. Подставляет дата атрибут взятый с event.target.dataset.source  с адресом кртинки 
+  lightboxImage.src = url.target.dataset.source 
+  
+}
+
+// function showsСloseButton() {
+
+// lightboxRef.apend( showsСloseButton)
+// }
