@@ -46,7 +46,7 @@ function openModl(event) {
   event.preventDefault();
 
 
-  console.log(event.target.dataset.number); --- Это номер дата атрибута открытой картинки. Нужно добавить слушатель во время отркития модалки. И типа если стрелка вправо то +1 влево -1
+  console.log(event.target.dataset.number); //--- Это номер дата атрибута открытой картинки. Нужно добавить слушатель во время отркития модалки. И типа если стрелка вправо то +1 влево -1
 
   window.addEventListener('keydown', keyPress)  //Вешаем слушатель для закрытия при нажитии искейп
 
