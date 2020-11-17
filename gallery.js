@@ -13,7 +13,7 @@ const overlayRef = document.querySelector('div.lightbox__overlay');
 
 
 
-
+let numberImg = 0
 //  Добавляет в ДОМ-документ все елементы масива
 const  getMarkup =(arr) => arr.reduce((acc, img) => 
   acc + `<li class="gallery__item">
@@ -25,6 +25,7 @@ const  getMarkup =(arr) => arr.reduce((acc, img) =>
       class="gallery__image"
       src="${img.preview}"
       data-source="${img.original}"
+      data-number="${numberImg +=1}"
       alt="${img.description}"
     />
   </a>
@@ -43,6 +44,9 @@ overlayRef.addEventListener('click', closesModal) // При клике на Ов
 
 function openModl(event) {
   event.preventDefault();
+
+
+  console.log(event.target.dataset.number); --- Это номер дата атрибута открытой картинки. Нужно добавить слушатель во время отркития модалки. И типа если стрелка вправо то +1 влево -1
 
   window.addEventListener('keydown', keyPress)  //Вешаем слушатель для закрытия при нажитии искейп
 
@@ -77,3 +81,7 @@ function closesModal() {
 }
 
 
+// window.addEventListener('keydown', (e) => {
+  
+//  console.log( e.code);
+// })
