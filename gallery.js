@@ -41,41 +41,77 @@ galleryRef.addEventListener('click', openModl)  // Слушатель клика
 btnCloseRef.addEventListener('click', closesModal) // При клике на кнопку закр. модалку
 overlayRef.addEventListener('click', closesModal) // При клике на Оверлей закр. модалку
 
-
 function openModl(event) {
   event.preventDefault();
 
-let numberPicture = +event.target.dataset.number
-  window.addEventListener('keydown', (e) => {    
-   if (e.code === 'ArrowRight') {
-     numberPicture += 1 
-     ;
-     if (numberPicture === +event.target.dataset.number +1 ) {  // Тут наверное нужно искать с помощю перебирающих методов
+
+
+  const allImg = document.querySelectorAll('.gallery__image');
+  // console.log(allImg[2].dataset.source);
+  const getUserNames = (ar) => ar.forEach((array) => {   // ГДЕТО ТУТ ИСКАТЬ РЕШЕНИЕ С КНОПКОЙ ВПРАВО
+    console.log(array);
+  })
+  getUserNames(allImg)
+
+
+  // console.log(allImg);
+
+
+
+
+  
+  window.addEventListener('keydown', movesRightAndLeft)
+ 
+
+  let numberPicture = +event.target.dataset.number
+  function movesRightAndLeft(e) {
+    if (e.code === 'ArrowRight') {
+      numberPicture += 1
+      console.log('Листнули вправо! Картинка номер', numberPicture);
+    }
+  
+    if (e.code === 'ArrowLeft') {
+      numberPicture -= 1
+      console.log('Листнули влево! Картинка номер', numberPicture)
+    }
+   
+    // lightboxImageRef.src =  тогда срс равен  срс - event.target.dataset.number 1 +
+        
+    // if (numberPicture === +event.target.dataset.number + 1) {  // Тут наверное нужно искать с помощю перебирающих методов
     // lightboxImageRef.src = (numberPicture = event.target.dataset.number )      // Возможно подойдет .find
-       console.log( +event.target.dataset.number +1);
+    // верни src равный дата атрибуту текущему
+    // const arr = (array) => array.find((elem) => {
+          
+    //   return elem
+    // }  )
+    //  console.log(+event.target.dataset.number + 1);
+    // }
+     
+    // console.log(numberPicture); //--- Это номер дата атрибута открытой картинки.
   }
-  }
-  console.log(numberPicture); //--- Это номер дата атрибута открытой картинки.
-  }) 
+ 
   
   if (event) {
     lightboxImageRef.src = event.target.dataset.source
      
   }
- 
 
-  //  Нужно добавить слушатель во время отркития модалки. И типа если стрелка вправо то +1 влево -1
-
-  window.addEventListener('keydown', keyPress)  //Вешаем слушатель для закрытия при нажитии искейп
+  window.addEventListener('keydown', keyPress)
 
   if (event.target.nodeName !== 'IMG') {
     return null
   }
 
   lightboxRef.classList.add('is-open')
-  const galleryImage = document.querySelector('.gallery__image');
+  const galleryImage = document.querySelectorAll('.gallery__image');
+  // const allAtributes =  galleryImage.attributes
+  // galleryImage.forEach(e => e);
 
-  // changesAtributeSrc(event)
+  // const s = (ar) => ar.foreach((el) => {
+  //   console.log(el);
+    
+  //  })
+
 
 }
 
@@ -85,7 +121,6 @@ const keyPress = (ev) => {
   }
 
 };
-
 
 function changesAtributeSrc(url) {    // меняет src  атрибут. Подставляет дата атрибут взятый с event.target.dataset.source  с адресом кртинки 
   lightboxImageRef.src = url.target.dataset.source
@@ -97,9 +132,3 @@ function closesModal() {
   lightboxRef.classList.remove('is-open')     //удаляет класс 
   lightboxImageRef.removeAttribute('src')       // Удаляет атрибут 
 }
-
-
-// window.addEventListener('keydown', (e) => {
-
-//  console.log( e.code);
-// })
