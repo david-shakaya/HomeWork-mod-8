@@ -105,7 +105,6 @@ function movesRightAndLeft(e) {
 
     }
   if (e.code === 'ArrowLeft') {
-    console.log(e);
        if (numberPicture === 1) {
         numberPicture = 1
       }
