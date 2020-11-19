@@ -101,7 +101,7 @@ function movesRightAndLeft(e) {
      } 
       console.log('Листнули вправо! Картинка номер', numberPicture);
     
-      returnesOriginalImg()
+      returnsOriginalImg()
 
     }
   if (e.code === 'ArrowLeft') {
@@ -115,11 +115,11 @@ function movesRightAndLeft(e) {
       
       console.log('Листнули влево! Картинка номер', numberPicture)
 
-     returnesOriginalImg()
+     returnsOriginalImg()
     }
 }
   
-    function returnesOriginalImg (){
+    function returnsOriginalImg (){
       const findSrcPrew = arrAllMarkup.filter(arr => +arr.attributes[3].value === numberPicture).map(arr => arr.src);
       const findSrcOriginal = galleryListImg.find(arr => arr.preview === findSrcPrew[0])
       lightboxImageRef.src =[findSrcOriginal][0].original
