@@ -55,13 +55,10 @@ function openModl(event) {
   const allImg = document.querySelectorAll('.gallery__image');
   // const galleryImage = document.querySelectorAll('.gallery__image');
 
-  
   getAllMarkup(allImg)
-
-   numberPicture = +event.target.dataset.number
-
   movesRightAndLeft(event)
-  
+  numberPicture = +event.target.dataset.number 
+
   if (event) {
     lightboxImageRef.src = event.target.dataset.source
   }
@@ -75,7 +72,7 @@ function openModl(event) {
 
 }
 
-const keyPress = (ev) => {
+const keyPress = (ev) => {         
   if (ev.code === 'Escape') {
     closesModal()
   }
@@ -88,21 +85,34 @@ function changesAtributeSrc(url) {    // меняет src  атрибут. По�
 }
 
 function closesModal() {
+  window.removeEventListener('keydown', movesRightAndLeft) // Снимает с стрелок слушатель
   window.removeEventListener('keydown', keyPress)   // Снимает с esc слушатель
   lightboxRef.classList.remove('is-open')     //удаляет класс 
   lightboxImageRef.removeAttribute('src')       // Удаляет атрибут 
 }
 
 function movesRightAndLeft(e) {
-    if (e.code === 'ArrowRight') {
+  if (e.code === 'ArrowRight') {
+    if (numberPicture === galleryListImg.length) {
+        numberPicture = galleryListImg.length
+      }
+    else {
       numberPicture += 1
+     } 
       console.log('Листнули вправо! Картинка номер', numberPicture);
     
       returnesOriginalImg()
 
     }
-    if (e.code === 'ArrowLeft') {
+  if (e.code === 'ArrowLeft') {
+    console.log(e);
+       if (numberPicture === 1) {
+        numberPicture = 1
+      }
+    else {
       numberPicture -= 1
+     } 
+      
       console.log('Листнули влево! Картинка номер', numberPicture)
 
      returnesOriginalImg()
